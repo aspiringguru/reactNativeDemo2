@@ -9,7 +9,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native';
 
 export default class ColorList extends Component {
@@ -29,18 +30,17 @@ export default class ColorList extends Component {
     const { backgroundColor } = this.state
     return (
       <View style={[styles.container,{backgroundColor}]}>
-      <Text>
-        ---Welcome to React Native!____
-      </Text>
-      <Text style={[styles.button, {color:'green'}]}
-        onPress={() => this.changeColor('green')}>green</Text>
-      <Text style={[styles.button, {color:'red'}]}
-        onPress={() => this.changeColor('red')}>red</Text>
-      <Text style={[styles.button, {color:'yellow'}]}
-        onPress={() => this.changeColor('yellow')}>yellow</Text>
-      <Text style={[styles.button, {color:'white'}]}
-        onPress={() => this.changeColor('white')}>white</Text>
-
+        <Text>
+          ---Welcome to React Native!____
+        </Text>
+        <TouchableHighlight style={styles.button}
+          onPress={() => this.changeColor('yellow')}
+          underlayColor="orange">
+          <View style={styles.row}>
+            <View style={[styles.sample, {backgroundColor: 'yellow'}]}/>
+              <Text style={styles.text}>yellow</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -54,14 +54,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   button: {
-    fontSize: 30,
     margin: 10,
     padding: 10,
     borderWidth: 2,
     borderRadius: 10,
     alignSelf: 'stretch',
-    textAlign: 'center'
+    backgroundColor: 'rgba(255,255,255,.8)' /** 0.8 transparency */
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  sample: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    margin: 5,
+    backgroundColor: 'white'
+  },
+  text: {
+    fontSize: 30,
+    margin: 5
   }
+
 });
 
 AppRegistry.registerComponent('ColorList', () => ColorList);
