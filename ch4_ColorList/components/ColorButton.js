@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
   Text,
-  ScrollView,
   View,
   TouchableHighlight
 } from 'react-native'
@@ -21,8 +19,7 @@ const ColorButton = ({ backgroundColor, onSelect=f=>f }) => (
 
     <View style={styles.row}>
       <View style={[styles.sample,{backgroundColor}]} />
-      {/** want to set text to color - need to insert something here? */}
-      <Text style={[styles.text,  {}]}>{backgroundColor}</Text>
+      <Text style={styles.text}>{backgroundColor}</Text>
     </View>
 
   </TouchableHighlight>

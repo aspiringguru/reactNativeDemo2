@@ -8,10 +8,10 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  ScrollView,
+  ListView,
   TouchableHighlight
 } from 'react-native';
+
 import ColorButton from './components/ColorButton'
 
 
@@ -19,9 +19,34 @@ export default class ColorList extends Component {
 
   constructor(){
     super()
+
+    this.ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    })
+
+    const availableColors = [
+      'red',
+      'green',
+      'yellow',
+      'salmon',
+      'pink',
+      '#0000FF',
+      'rgba(255,0,255,.9)',
+      'red',
+      'green',
+      'yellow',
+      'salmon',
+      'pink',
+      '#0000FF',
+      'rgba(255,0,255,.9)'
+    ]
+
     this.state = {
-      backgroundColor: 'blue'
+      backgroundColor: 'blue',
+      availableColors,
+      dataSource: this.ds.cloneWithRows(availableColors)
     }
+
     this.changeColor = this.changeColor.bind(this)
   }
   changeColor(backgroundColor){
@@ -31,21 +56,12 @@ export default class ColorList extends Component {
   render() {
     const { backgroundColor } = this.state
     return (
-      <ScrollView style={[styles.container,{backgroundColor}]}>
-        <ColorButton backgroundColor="red" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="yellow" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="white" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="black" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="silver" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="gray" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="maroon" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="purple" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="green" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="lime" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="olive" onSelect={this.changeColor}/>
-        <ColorButton backgroundColor="yellow" onSelect={this.changeColor}/>
-
-      </ScrollView>
+      <ListView style={[styles.container,{backgroundColor}]}
+        dataSource={this.state.dataSource}
+        renderRow={(color) => (
+          <ColorButton backgroundColor=color onSelect={this.changeColor}/>
+        )}>
+      </ListView>
     );
   }
 }
