@@ -9,6 +9,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  ScrollView,
   View,
   TouchableHighlight
 } from 'react-native';
@@ -35,11 +36,19 @@ export default class ColorList extends Component {
         <Text>
           ---Welcome to React Native!____
         </Text>
-        {/** <ColorButton backgroundColor="red" onSelect={(color) => this.changeColor(color)}/> */}
+        {/** buttons exceed size of screen, next step implement ScrollView */}
         <ColorButton backgroundColor="red" onSelect={this.changeColor}/>
         <ColorButton backgroundColor="yellow" onSelect={this.changeColor}/>
         <ColorButton backgroundColor="white" onSelect={this.changeColor}/>
         <ColorButton backgroundColor="black" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="silver" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="gray" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="maroon" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="purple" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="green" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="lime" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="olive" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="yellow" onSelect={this.changeColor}/>
 
       </View>
     );
