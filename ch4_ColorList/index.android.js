@@ -35,7 +35,11 @@ export default class ColorList extends Component {
         <Text>
           ---Welcome to React Native!____
         </Text>
-        <ColorButton backgroundColor="red" />
+        {/** <ColorButton backgroundColor="red" onSelect={(color) => this.changeColor(color)}/> */}
+        <ColorButton backgroundColor="red" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="yellow" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="white" onSelect={this.changeColor}/>
+        <ColorButton backgroundColor="black" onSelect={this.changeColor}/>
 
       </View>
     );
