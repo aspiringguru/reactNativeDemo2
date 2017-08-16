@@ -21,7 +21,8 @@ const ColorButton = ({ backgroundColor, onSelect=f=>f }) => (
 
     <View style={styles.row}>
       <View style={[styles.sample,{backgroundColor}]} />
-      <Text style={styles.text}>{backgroundColor}</Text>
+      {/** want to set text to color - need to insert something here? */}
+      <Text style={[styles.text,  {}]}>{backgroundColor}</Text>
     </View>
 
   </TouchableHighlight>
@@ -31,10 +32,10 @@ const styles = StyleSheet.create({
   button: {
     margin: 10,
     padding: 10,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 10,
     alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,.8)'
+    backgroundColor: 'rgba(255,255,255,.1)'
   },
   row: {
     flexDirection: 'row',

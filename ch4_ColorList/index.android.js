@@ -10,7 +10,6 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  View,
   TouchableHighlight
 } from 'react-native';
 import ColorButton from './components/ColorButton'
@@ -32,11 +31,7 @@ export default class ColorList extends Component {
   render() {
     const { backgroundColor } = this.state
     return (
-      <View style={[styles.container,{backgroundColor}]}>
-        <Text>
-          ---Welcome to React Native!____
-        </Text>
-        {/** buttons exceed size of screen, next step implement ScrollView */}
+      <ScrollView style={[styles.container,{backgroundColor}]}>
         <ColorButton backgroundColor="red" onSelect={this.changeColor}/>
         <ColorButton backgroundColor="yellow" onSelect={this.changeColor}/>
         <ColorButton backgroundColor="white" onSelect={this.changeColor}/>
@@ -50,7 +45,7 @@ export default class ColorList extends Component {
         <ColorButton backgroundColor="olive" onSelect={this.changeColor}/>
         <ColorButton backgroundColor="yellow" onSelect={this.changeColor}/>
 
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -58,9 +53,7 @@ export default class ColorList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    paddingTop: 20
   },
 
 });
