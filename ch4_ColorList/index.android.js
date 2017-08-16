@@ -12,6 +12,8 @@ import {
   View,
   TouchableHighlight
 } from 'react-native';
+import ColorButton from './components/ColorButton'
+
 
 export default class ColorList extends Component {
 
@@ -33,14 +35,8 @@ export default class ColorList extends Component {
         <Text>
           ---Welcome to React Native!____
         </Text>
-        <TouchableHighlight style={styles.button}
-          onPress={() => this.changeColor('yellow')}
-          underlayColor="orange">
-          <View style={styles.row}>
-            <View style={[styles.sample, {backgroundColor: 'yellow'}]}/>
-              <Text style={styles.text}>yellow</Text>
-          </View>
-        </TouchableHighlight>
+        <ColorButton backgroundColor="red" />
+
       </View>
     );
   }
@@ -53,30 +49,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  button: {
-    margin: 10,
-    padding: 10,
-    borderWidth: 2,
-    borderRadius: 10,
-    alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,.8)' /** 0.8 transparency */
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  sample: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-    margin: 5,
-    backgroundColor: 'white'
-  },
-  text: {
-    fontSize: 30,
-    margin: 5
-  }
 
 });
+
 
 AppRegistry.registerComponent('ColorList', () => ColorList);
