@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   StyleSheet,
   Text,
@@ -7,12 +7,6 @@ import {
 } from 'react-native'
 
 const ColorButton = ({ backgroundColor, onSelect=f=>f }) => (
-  /**
-  *   backgroundColor is passed from the calling object, used to set color
-  *   ES6 notation used.
-  *   onSelect=f=>f sets onSelect to a default function.
-  *
-  */
   <TouchableHighlight style={styles.button}
     onPress={() => onSelect(backgroundColor)}
     underlayColor="orange">
@@ -29,10 +23,10 @@ const styles = StyleSheet.create({
   button: {
     margin: 10,
     padding: 10,
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
     alignSelf: 'stretch',
-    backgroundColor: 'rgba(255,255,255,.1)'
+    backgroundColor: 'rgba(255,255,255,.8)'
   },
   row: {
     flexDirection: 'row',
