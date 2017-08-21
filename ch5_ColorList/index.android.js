@@ -17,7 +17,6 @@ export default class ColorList extends Component {
     this.ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
-    /* state with no colors in memory */
     const availableColors = [
     ]
     this.state = {
@@ -29,10 +28,6 @@ export default class ColorList extends Component {
     this.newColor = this.newColor.bind(this)
   }
 
-  /*
-  *
-  *
-  */
   componentDidMount() {
     AsyncStorage.getItem(
       '@ColorListStore:Colors',
@@ -52,10 +47,6 @@ export default class ColorList extends Component {
 
 
   saveColors(colors) {
-    /*  AsyncStorage works globally, need unique names
-    *   static setItem(key: string, value: string, callback?: ?(error: ?Error) => void)
-    *   https://facebook.github.io/react-native/docs/asyncstorage.html
-    */
     AsyncStorage.setItem(
       '@ColorListStore:Colors',
       JSON.stringify(colors)
@@ -76,7 +67,6 @@ export default class ColorList extends Component {
       availableColors,
       dataSource: this.ds.cloneWithRows(availableColors)
     })
-    /* save color after setting state. */
     this.saveColors(availableColors)
   }
 
