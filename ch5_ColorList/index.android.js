@@ -17,8 +17,8 @@ export default class ColorList extends Component {
     this.ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
-    const availableColors = [
-    ]
+    const availableColors = ['red', 'blue']
+    /* NB: availableColors can start from empty */
     this.state = {
       backgroundColor: 'blue',
       availableColors,
@@ -27,6 +27,34 @@ export default class ColorList extends Component {
     this.changeColor = this.changeColor.bind(this)
     this.newColor = this.newColor.bind(this)
   }
+
+  /**
+  *     adding persistent storage
+  *     https://facebook.github.io/react-native/docs/asyncstorage.html
+  *     static getItem(key: string, callback?: ?(error: ?Error, result: ?string) => void)
+  *     NB: is this method is loaded outside the tutorial error results.
+  *     requested keys of a value that is not an object.
+  */
+  componentDidMount() {
+    AsyncStorage.getItem(
+      '@ColorListStore:Colors',
+      (err, data) => {
+        if (err) {
+          console.error('Error loading colors', err)
+        } else {
+          const availableColors = JSON.parse(data)
+          this.setState({
+            availableColors,
+            dataSource: this.ds.cloneWithRows(availableColors)
+          })
+        }
+      }
+    )
+  }
+
+
+
+
 
   /**
   *     static setItem(key: string, value: string, callback?: ?(error: ?Error) => void)
