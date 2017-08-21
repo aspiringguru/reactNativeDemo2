@@ -28,24 +28,10 @@ export default class ColorList extends Component {
     this.newColor = this.newColor.bind(this)
   }
 
-  componentDidMount() {
-    AsyncStorage.getItem(
-      '@ColorListStore:Colors',
-      (err, data) => {
-        if (err) {
-          console.error('Error loading colors', err)
-        } else {
-          const availableColors = JSON.parse(data)
-          this.setState({
-            availableColors,
-            dataSource: this.ds.cloneWithRows(availableColors)
-          })
-        }
-      }
-    )
-  }
-
-
+  /**
+  *     static setItem(key: string, value: string, callback?: ?(error: ?Error) => void)
+  *     https://facebook.github.io/react-native/docs/asyncstorage.html
+  */
   saveColors(colors) {
     AsyncStorage.setItem(
       '@ColorListStore:Colors',
@@ -67,6 +53,7 @@ export default class ColorList extends Component {
       availableColors,
       dataSource: this.ds.cloneWithRows(availableColors)
     })
+    /** save colors */
     this.saveColors(availableColors)
   }
 
