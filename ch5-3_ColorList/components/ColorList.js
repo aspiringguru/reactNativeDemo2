@@ -73,6 +73,7 @@ export default class ColorList extends Component {
     /*
     *   .navigation automatically added to any of the screen components
     *   when button onSelect navigate to screen Details
+    *   button onSelect call to navigate passes second parameter color
     */
     const { navigate } = this.props.navigation
     const { backgroundColor, dataSource } = this.state
@@ -81,7 +82,7 @@ export default class ColorList extends Component {
         dataSource={dataSource}
         renderRow={(color) => (
           <ColorButton backgroundColor={color}
-            onSelect={() => navigate('Details')}/>
+            onSelect={() => navigate('Details', { color })}/>
         )}
         renderHeader={() => (
           <ColorForm onNewColor={this.newColor} />

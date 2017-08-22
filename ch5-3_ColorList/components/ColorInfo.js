@@ -5,16 +5,19 @@ import {
   StyleSheet
 } from 'react-native'
 
-
-const ColorInfo = () => (
+/*
+*   the entire props is passed to the stateless functional component as an argument
+*
+*/
+const ColorInfo = ({ navigation }) => (
   <View style={styles.container}>
-    <Text style={styles.text}>TODO: Display Color</Text>
+    <Text style={styles.text}>{ navigation.state.params.color }</Text>
   </View>
 )
 
 
 /*
-*     
+*
 *     NB: this is a stateless functional component
 */
 ColorInfo.navigationOptions = {
