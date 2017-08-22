@@ -26,12 +26,16 @@ class HomeScreen extends React.Component {
       <View>
         <Text>Hello, Chat App!</Text>
         <Button
-          onPress={() => navigate('Chat')}
+          onPress={() => navigate('Chat', { user: 'Lucy', age: '100' })}
           title="Chat with Lucy"
         />
         <Button
-          onPress={() => navigate('Chat2')}
-          title="Chat with 2"
+          onPress={() => navigate('Chat', { user: 'Katy', age: '90' })}
+          title="Chat with Katy"
+        />
+        <Button
+          onPress={() => navigate('Chat', { user: 'Sarah', age: '80' })}
+          title="Chat with Sarah"
         />
       </View>
     );
@@ -39,26 +43,15 @@ class HomeScreen extends React.Component {
 }
 
 class ChatScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Chat with Lucy',
-  };
+  static navigationOptions = ({ navigation }) => ({
+    title: `Chat with ${navigation.state.params.user}`,
+  });
   render() {
+    // The screen's current route is passed in to `props.navigation.state`:
+    const { params } = this.props.navigation.state;
     return (
       <View>
-        <Text>Chat with Lucy</Text>
-      </View>
-    );
-  }
-}
-
-class ChatScreen2 extends React.Component {
-  static navigationOptions = {
-    title: 'Chat with 22222',
-  };
-  render() {
-    return (
-      <View>
-        <Text>Chat with 22222</Text>
+        <Text>Chat with {params.user} age {params.age}</Text>
       </View>
     );
   }
@@ -68,7 +61,6 @@ class ChatScreen2 extends React.Component {
 const demoNavigation = StackNavigator({
   Home: { screen: HomeScreen },
   Chat: { screen: ChatScreen },
-  Chat2: { screen: ChatScreen2 },
 });
 
 
