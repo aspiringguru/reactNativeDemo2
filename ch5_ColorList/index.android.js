@@ -12,7 +12,8 @@ class App extends Component {
   render() {
     return (
        /** <ColorList onColorSelected={color => Alert.alert(color)} /> */
-       <ColorInfo backgroundColor = "yellow"/>
+       <ColorInfo backgroundColor = "white"
+        onSelect = {() => Alert.alert('Screen touched')}/>
     )
   }
 }
