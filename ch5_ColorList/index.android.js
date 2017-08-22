@@ -5,18 +5,15 @@ import {
 } from 'react-native'
 
 import ColorList from './components/ColorList'
+import ColorInfo from './components/ColorInfo'
 
 class App extends Component {
   render() {
     return (
-       <ColorList onColorSelected={color => Alert.alert(color)} />
-       /**  <ColorList onColorSelected={color => console.log("---")} /> */
-       /**  NB: was not able to get alert to work as in the video.
-       *    
-       */
+       <ColorInfo backgroundColor = "yellow"/>
     )
   }
 }
 
 
-AppRegistry.registerComponent('ColorList', () => ColorList)
+AppRegistry.registerComponent('ColorList', () => App)
