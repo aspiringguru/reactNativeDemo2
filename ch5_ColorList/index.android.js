@@ -7,13 +7,14 @@ import {
 import ColorList from './components/ColorList'
 import ColorInfo from './components/ColorInfo'
 
+
 class App extends Component {
   render() {
     return (
+       /** <ColorList onColorSelected={color => Alert.alert(color)} /> */
        <ColorInfo backgroundColor = "yellow"/>
     )
   }
 }
-
 
 AppRegistry.registerComponent('ColorList', () => App)

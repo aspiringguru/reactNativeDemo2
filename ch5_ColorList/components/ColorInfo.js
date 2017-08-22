@@ -7,16 +7,16 @@ import {
 } from 'react-native'
 
 
-const ColorInfo = ({ backgroundColor })  => {
+const ColorInfo = ({ backgroundColor, onSelect=f=>f }) => {
+
   return (
     <TouchableHighlight
-      style={styles.container}>
-      <Text style={styles.text}>{backgroundColor}</Text>
+      style={[styles.container, {backgroundColor}]} >
+      <Text style={[styles.text]}>{backgroundColor}</Text>
     </TouchableHighlight>
-
   )
-}
 
+}
 
 const styles = StyleSheet.create({
   container: {
