@@ -1,90 +1,82 @@
-/*
-*   http://hplussport.com/api/products.php
-*   https://wwwlyndacom.ezproxy.slq.qld.gov.au/React-js-tutorials/Fetch-data/577374/648308-4.html?autoplay=true
-*/
+/**
+*
+*
+*   react-native init Movies
+*   copy this file into Movies directory to replace index.android.js
+*   react-native run-android
+ */
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  ScrollView,
   ActivityIndicator,
-  Image,
-  Dimensions
-} from 'react-native'
+  ListView,
+  Text,
+  View,
+} from 'react-native';
 
 
-export default class Products extends Component {
-  /*
-  *   constructor invokes super to enable setting up
-  *   state variables to hold data.
-  *
-  */
-  constructor() {
-     super()
-     this.state = {
-       productImages: [],
-       fetching: false
-     }
-   }
+export default class Movies extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true
+  }
+}/* end constructor(props) */
 
-  /*
-  *   method : componentDidMount
-  *   fetch method is accessible globally in react-native.
-  *   fetch method returns a promise
-  *   https://facebook.github.io/react-native/docs/network.html
-  *   https://developer.mozilla.org/en-US/docs/Web/API/Request
-  *   can chain as man .then functions on as desired.
-  *   first .then function parse the response as json
-  *   next .then function outputs to console.log to make results visible.
-  *   product is an array and arrays have map functions.
-  *   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
-  *
-  *   https://facebook.github.io/react/docs/react-component.html
-  *   https://facebook.github.io/react/docs/react-component.html#componentdidmount
-  *   componentDidMount() is invoked immediately after a component is mounted.
-  */
+
   componentDidMount() {
-    this.setState({ fetching: true })
-    fetch('https://hplussport.com/api/products.php')
-      .then(response => response.json())
-      .then(products => console.log(products))
-      .catch(err => console.error('error fetching products', err))
-  }
+      return fetch("https://raw.githubusercontent.com/aspiringguru/reactNativeDemo2/master/ch5-5-fetch_data/mydata.json")
+        .then((response) => response.json())
+        .then((responseJson) => {
+          let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+          this.setState({
+            isLoading: false,
+            dataSource: ds.cloneWithRows(responseJson.movies),
+          }, function() {
+            // do something with new state
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }/* end componentDidMount */
 
-  /**
-  *   render
-  *   ActivityIndicator animating does not work in android.
-  *
-  *
-  */
-  render() {
-    return (
-      <ScrollView horizontal={true}>
-        <Text>999</Text>
-        <ActivityIndicator size="large"
-          style={styles.spinner}
-          animating={this.state.fetching} />
-      </ScrollView>
-    )
-  }
-} /*  export default class Products extends Component  */
+    render() {
+      if (this.state.isLoading) {
+        return (
+          <View style={{flex: 1, paddingTop: 20}}>
+            <ActivityIndicator />
+          </View>
+        );
+      }
+      /*  if not (this.state.isLoading)  */
+      return (
+        <View style={{flex: 1, paddingTop: 20}}>
+        <Text>-----------------</Text>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) =>
+              <Text>{rowData.title}, {rowData.releaseYear}, {rowData.rating}
+              </Text>}
+          />
+        </View>
+      ); /* end return */
+    }/* end render */
+
+
+}/* end export default class Movies extends Component */
 
 /*
-*   spinner should set
-*
+*   api references docs
+*   https://facebook.github.io/react-native/docs/listview.html
+*   
 */
-const styles = StyleSheet.create({
-  spinner: {
-    position: 'absolute',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
-  },
-  thumb: {
-    width: 375,
-    resizeMode: 'cover'
-  }
-})
 
-AppRegistry.registerComponent('Products', () => Products)
+
+
+const styles = StyleSheet.create({
+});
+
+AppRegistry.registerComponent('Movies', () => Movies);
