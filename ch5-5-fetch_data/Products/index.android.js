@@ -41,8 +41,17 @@ export default class Products extends Component {
   *   product is an array and arrays have map functions.
   *   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
   *
+  *   https://facebook.github.io/react/docs/react-component.html
+  *   https://facebook.github.io/react/docs/react-component.html#componentdidmount
+  *   componentDidMount() is invoked immediately after a component is mounted.
   */
-  /* .then(products => products.map(product => product.image)) */
+  componentDidMount() {
+    this.setState({ fetching: true })
+    fetch('https://hplussport.com/api/products.php')
+      .then(response => response.json())
+      .then(products => console.log(products))
+      .catch(err => console.error('error fetching products', err))
+  }
 
   /**
   *   render
@@ -53,10 +62,10 @@ export default class Products extends Component {
   render() {
     return (
       <ScrollView horizontal={true}>
-        <Text>111222</Text>
+        <Text>333</Text>
         <ActivityIndicator size="large"
           style={styles.spinner}
-          animating={true} />
+          animating={this.state.fetching} />
       </ScrollView>
     )
   }
