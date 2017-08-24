@@ -49,6 +49,7 @@ export default class Products extends Component {
     this.setState({ fetching: true })
     fetch('https://hplussport.com/api/products.php')
       .then(response => response.json())
+      .then(products => products.map(product => product.image))
       .then(products => console.log(products))
       .catch(err => console.error('error fetching products', err))
   }
@@ -56,13 +57,14 @@ export default class Products extends Component {
   /**
   *   render
   *   ActivityIndicator animating does not work in android.
+  *   https://facebook.github.io/react-native/docs/image.html
   *
   *
   */
   render() {
     return (
-      <ScrollView horizontal={true}>
-        <Text>999</Text>
+      <ScrollView vertical={true}>
+        <Text>------------------</Text>
         <ActivityIndicator size="large"
           style={styles.spinner}
           animating={this.state.fetching} />
