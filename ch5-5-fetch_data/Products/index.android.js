@@ -62,7 +62,7 @@ export default class Products extends Component {
   render() {
     return (
       <ScrollView horizontal={true}>
-        <Text>333</Text>
+        <Text>123</Text>
         <ActivityIndicator size="large"
           style={styles.spinner}
           animating={this.state.fetching} />
