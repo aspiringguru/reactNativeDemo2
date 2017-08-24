@@ -21,8 +21,17 @@ export default class Products extends Component {
   *   state variables to hold data.
   *
   */
+  constructor() {
+     super()
+     this.state = {
+       productImages: [],
+       fetching: false
+     }
+   }
 
   /*
+  *   method : componentDidMount
+  *   fetch method is accessible globally in react-native.
   *   fetch method returns a promise
   *   https://facebook.github.io/react-native/docs/network.html
   *   https://developer.mozilla.org/en-US/docs/Web/API/Request
@@ -36,6 +45,7 @@ export default class Products extends Component {
   /* .then(products => products.map(product => product.image)) */
 
   /**
+  *   render
   *   ActivityIndicator animating does not work in android.
   *
   *
@@ -43,11 +53,14 @@ export default class Products extends Component {
   render() {
     return (
       <ScrollView horizontal={true}>
-        <Text>ggg</Text>
+        <Text>111222</Text>
+        <ActivityIndicator size="large"
+          style={styles.spinner}
+          animating={true} />
       </ScrollView>
     )
   }
-}
+} /*  export default class Products extends Component  */
 
 /*
 *   spinner should set
